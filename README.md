@@ -142,14 +142,6 @@ Move everything to an embedded Python.
  └── README.md
  ```
 
- ## Contributing
-
- *(Add contribution guidelines here)*
-
- ## License
-
- *(Specify your license here, e.g., MIT License)*
-
  ## Acknowledgements
 
  *   CustomTkinter
