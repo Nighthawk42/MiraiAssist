@@ -136,7 +136,6 @@ Move everything to an embedded Python.
  │   ├── system_manager.py
  │   ├── tts_manager.py
  │   └── ui_manager.py
- ├── placeholder.png          Replace with your screenshot
  ├── config.yaml
  ├── main.py
  └── README.md
