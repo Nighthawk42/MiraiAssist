@@ -1,6 +1,9 @@
- ## MiraiAssist v0.3.1-RAG
+ ## MiraiAssist v0.0.1-RAG
 
  A modular Python voice/text assistant framework featuring RAG (Retrieval-Augmented Generation) for long-term conversation memory, real-time STT/TTS, and a customizable UI.
+
+## Project Status
+This project is very much in the alpha state. It works. But it still has quirks and improvement. Especially in the GUI department. I have little to no experience designing nice GUIs.
 
  ## Features
 
