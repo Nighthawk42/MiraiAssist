@@ -8,7 +8,9 @@ This project is very much in the alpha state. It works. But it still has quirks 
 ## TODO
 
 Add a hot-word like "Hey Mirai".
+
 Design a better GUI. Maybe use a TUI instead?
+
 Move everything to an embedded Python.
 
  ## Features
