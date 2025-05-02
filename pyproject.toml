@@ -1,0 +1,44 @@
+[project]
+name = "mirai_assist"
+version = "0.1.0"
+requires-python = ">=3.12.10"
+description = "A modular virtual assistant using local AI."
+
+dependencies = [
+    # core
+    "pyyaml",
+    "spacy",
+    "openai",
+    "pvporcupine",
+    "faster-whisper",
+    "kokoro",
+    "pyaudio",
+    "soundfile",
+    "numpy",
+    "scipy",
+    "pillow",
+    "torch==2.7.0+cu128",
+    "torchvision==0.22.0+cu128",
+    "torchaudio==2.7.0+cu128",
+    "customtkinter",
+    "tiktoken",
+    "sentence-transformers>=4.1.0",
+    "chromadb>=1.0.7",
+]
+
+# ─────────  uv index configuration  ─────────
+# 1️⃣  keep PyPI as the **first/default** index
+[[tool.uv.index]]
+name = "pypi"
+url  = "https://pypi.org/simple"
+
+# 2️⃣  add the PyTorch CUDA-12.8 mirror
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url  = "https://download.pytorch.org/whl/cu128"
+
+# 3️⃣  tell uv to fetch only these three from the mirror
+[tool.uv.sources]
+torch       = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
+torchaudio  = { index = "pytorch-cu128" }

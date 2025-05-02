@@ -1,0 +1,104 @@
+# ================================================
+# MireiAssist Configuration File
+# ================================================
+
+# --- LLM (Large Language Model) Settings ---
+llm:
+  api_base_url: "http://localhost:1234/v1" # e.g., LM Studio, Ollama, OpenAI
+  api_key_env_var: "NONE"                  # Environment variable for API key. "NONE" or null if not needed.
+  model_name: "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF" # Model identifier for the API
+  # !!! SET THIS ACCURATELY FOR YOUR MODEL !!! (e.g., Llama3 8k=8192, GPT-4 128k=131072)
+  # Used for Tiktoken length checks if available. Set to 0 to disable checks.
+  model_context_window: 8192
+  system_prompt: "You are Mirei, a helpful and concise AI assistant integrated into a desktop application. Respond clearly and directly. You can use markdown formatting."
+  temperature: 0.7      # 0=deterministic, >1 more creative
+  max_tokens: 1536      # Max tokens for the LLM's *response* (ensure less than model_context_window)
+  timeout_seconds: 120.0
+  max_retries: 1
+
+# --- Context Manager (RAG) Settings ---
+context_manager:
+  storage_path: "data/conversation_state.json" # Stores full raw history
+  vector_db_path: "data/chroma_db"             # Stores vector index
+  # Embedding Model: https://www.sbert.net/docs/pretrained_models.html
+  embedding_model_name: "all-MiniLM-L6-v2"     # Model for text embeddings ("multi-qa-MiniLM-L6-cos-v1" is another option)
+  collection_name: "mirei_chat_history"        # ChromaDB collection name
+  retrieval_results: 3                         # How many relevant history chunks to retrieve
+  include_recent_messages: 2                   # How many recent messages to *always* include with RAG results
+
+# --- STT (Speech-to-Text) Settings ---
+stt:
+  # Faster Whisper: https://github.com/SYSTRAN/faster-whisper#model-weights
+  model_size: "base.en" # tiny.en, base.en, small.en, medium.en, large-v3
+  device: "cpu"         # cpu, cuda (Ensure PyTorch with CUDA is installed if using cuda)
+  compute_type: "int8"  # CPU: int8, int16, float32. CUDA: float16, int8_float16, int8
+  vad_filter: true      # Enable Voice Activity Detection (recommended)
+  vad_parameters:       # Optional VAD tuning (see faster-whisper docs)
+    # threshold: 0.5
+    # min_silence_duration_ms: 50
+    # min_speech_duration_ms: 250
+    # speech_pad_ms: 400
+  beam_size: 5          # Higher = more accurate but slower
+  language: null        # null = auto-detect, or "en", "ja", etc.
+  initial_prompt: null  # Optional prompt to guide transcription
+
+# --- TTS (Text-to-Speech) Settings ---
+tts:
+  # Kokoro: https://github.com/hexgrad/Kokoro/tree/main#-voices
+  lang_code: "a"        # a=American, b=British, j=Japanese
+  voice: "af_heart"     # Kokoro voice preset
+  speed: 1.0            # 1.0 = normal speed
+
+# --- Audio Settings ---
+audio:
+  sample_rate: 16000
+  record_chunk_size: 1024
+  channels: 1 # Mono
+  input_device: null  # null = default device, or index (e.g., 1), or partial name ("Microphone Array")
+  output_device: null # null = default device, or index (e.g., 4), or partial name ("Speakers")
+
+# --- Activation Settings ---
+activation:
+  push_to_talk_key: "<Control-space>" # Tkinter format. "" or null to disable.
+
+# --- GUI Settings ---
+gui:
+  theme_preference: "dark" # system, light, dark
+
+# --- Logging Settings ---
+logging:
+  # General Settings
+  console_log_level: "INFO" # Minimum level for console (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+  # File Logging Settings
+  file_logging_enabled: true
+  log_directory: "logs"
+  application_log_file: "mirai_assist.log"
+  application_log_level: "DEBUG" # Capture detailed info for debugging
+  error_log_file: "errors.log"
+  error_log_level: "WARNING"     # Capture warnings and errors separately
+  log_max_bytes: 5242880         # 5 MB
+  log_backup_count: 3
+
+  # Rich Console Logging Settings (Requires 'rich' library: uv add rich)
+  rich_console_logging: true        # Set to true to use Rich for console output
+  rich_show_time: true              # Show timestamp in Rich console output
+  rich_show_level: true             # Show log level (e.g., INFO, ERROR)
+  rich_show_path: false             # Show module path (e.g., modules.llm_manager) - can be verbose
+  rich_markup: true                 # Enable Rich markup processing (e.g., [bold], [red]) in log messages
+  rich_tracebacks: true             # Use Rich formatting for exception tracebacks
+  rich_tracebacks_show_locals: false # Optionally show local variables in tracebacks
+  rich_keywords:                  # Optional: List of keywords to highlight in log messages (case-sensitive)
+    - "CRITICAL"
+    - "ERROR"
+    # - "WARNING"
+    - "Failed"
+    - "Success"
+    - "Ready"
+    - "Initialized"
+    - "Shutdown"
+    - "Saving"
+    - "Loading"
+    - "RAG"
+    - "Retrieving"
+    - "Indexing"
