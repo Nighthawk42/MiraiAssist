@@ -5,6 +5,12 @@
 ## Project Status
 This project is very much in the alpha state. It works. But it still has quirks and improvement. Especially in the GUI department. I have little to no experience designing nice GUIs.
 
+## TODO
+
+Add a hot-word like "Hey Mirai".
+Design a better GUI. Maybe use a TUI instead?
+Move everything to an embedded Python.
+
  ## Features
 
  *   **Voice & Text Input:** Interact via Push-to-Talk, a Record button, or a text input box.
