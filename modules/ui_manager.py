@@ -1,5 +1,5 @@
 # ================================================
-# FILE: modules/ui_manager.py (Textbox Input)
+# FILE: modules/ui_manager.py
 # ================================================
 from __future__ import annotations
 

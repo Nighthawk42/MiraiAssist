@@ -1,6 +1,17 @@
- ## MiraiAssist v0.3.1-RAG
+ ## MiraiAssist v0.0.1-RAG
 
  A modular Python voice/text assistant framework featuring RAG (Retrieval-Augmented Generation) for long-term conversation memory, real-time STT/TTS, and a customizable UI.
+
+## Project Status
+This project is very much in the alpha state. It works. But it still has quirks and improvement. Especially in the GUI department. I have little to no experience designing nice GUIs.
+
+## TODO
+
+Add a hot-word like "Hey Mirai".
+
+Design a better GUI. Maybe use a TUI instead?
+
+Move everything to an embedded Python.
 
  ## Features
 
@@ -125,19 +136,10 @@
  │   ├── system_manager.py
  │   ├── tts_manager.py
  │   └── ui_manager.py
- ├── placeholder.png          Replace with your screenshot
  ├── config.yaml
  ├── main.py
  └── README.md
  ```
-
- ## Contributing
-
- *(Add contribution guidelines here)*
-
- ## License
-
- *(Specify your license here, e.g., MIT License)*
 
  ## Acknowledgements
 

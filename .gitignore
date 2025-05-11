@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+data/chroma_db/chroma.sqlite3
+data/chroma_db/83aaf16d-d56b-4094-b418-2d729ad113ea/data_level0.bin
+MiraiAssist.rar
+local_digest.txt
+data/chroma_db/83aaf16d-d56b-4094-b418-2d729ad113ea/header.bin
+data/chroma_db/83aaf16d-d56b-4094-b418-2d729ad113ea/length.bin
+data/chroma_db/83aaf16d-d56b-4094-b418-2d729ad113ea/link_lists.bin

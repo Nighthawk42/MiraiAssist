@@ -4,13 +4,12 @@
 
 # --- LLM (Large Language Model) Settings ---
 llm:
-  api_base_url: "http://localhost:1234/v1" # e.g., LM Studio, Ollama, OpenAI
-  api_key_env_var: "NONE"                  # Environment variable for API key. "NONE" or null if not needed.
-  model_name: "lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF" # Model identifier for the API
-  # !!! SET THIS ACCURATELY FOR YOUR MODEL !!! (e.g., Llama3 8k=8192, GPT-4 128k=131072)
-  # Used for Tiktoken length checks if available. Set to 0 to disable checks.
+  api_base_url: "http://localhost:1234/v1"
+  api_key_env_var: "NONE"
+  model_name: "lmstudio-community/gemma-3-4b-it-qat-q4_0-gguf" # For the API call
+  tokenizer_source_for_estimation: "google/gemma-2b-it" # Or appropriate Gemma base for tokenizer
   model_context_window: 8192
-  system_prompt: "You are Mirei, a helpful and concise AI assistant integrated into a desktop application. Respond clearly and directly. You can use markdown formatting."
+  system_prompt: "You are Mirai, a helpful and concise AI assistant integrated into a desktop application. Respond clearly and directly. You can use markdown formatting."
   temperature: 0.7      # 0=deterministic, >1 more creative
   max_tokens: 1536      # Max tokens for the LLM's *response* (ensure less than model_context_window)
   timeout_seconds: 120.0
@@ -18,13 +17,17 @@ llm:
 
 # --- Context Manager (RAG) Settings ---
 context_manager:
-  storage_path: "data/conversation_state.json" # Stores full raw history
-  vector_db_path: "data/chroma_db"             # Stores vector index
-  # Embedding Model: https://www.sbert.net/docs/pretrained_models.html
-  embedding_model_name: "all-MiniLM-L6-v2"     # Model for text embeddings ("multi-qa-MiniLM-L6-cos-v1" is another option)
-  collection_name: "mirei_chat_history"        # ChromaDB collection name
-  retrieval_results: 3                         # How many relevant history chunks to retrieve
-  include_recent_messages: 2                   # How many recent messages to *always* include with RAG results
+  storage_path: "data/conversation_state.json" # Full raw conversation history
+  vector_db_path: "data/chroma_db" # ChromaDB persistence path
+  embedding_model_name: "all-MiniLM-L6-v2" # Sentence-transformers model for embeddings
+  collection_name: "mirei_chat_history" # ChromaDB collection name
+  retrieval_results: 3 # How many relevant history chunks to retrieve
+  include_recent_messages: 2 # How many recent messages to *always* include
+
+# --- Memory Manager Settings ---
+memory_manager:
+  short_term_window_turns: 2    # Number of recent conversational turns (user+assistant)
+  long_term_retrieval_count: 3  # Number of relevant history messages from RAG
 
 # --- STT (Speech-to-Text) Settings ---
 stt:
