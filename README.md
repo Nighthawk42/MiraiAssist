@@ -153,3 +153,6 @@ Move everything to an embedded Python.
  *   Rich (Textualize)
  *   OpenAI Python Client
  *   Hugging Face Hub & Transformers
+
+## Donations
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P21QRW51)
